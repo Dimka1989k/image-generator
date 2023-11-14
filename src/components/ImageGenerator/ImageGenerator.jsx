@@ -40,6 +40,13 @@ const ImageGenerator = () => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleGenerateImage();
+    }
+  };
+
   return (
     <div className="container">
       <h1 className="container-header">
@@ -51,6 +58,7 @@ const ImageGenerator = () => {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Write your promt here..."
+          onKeyDown={handleKeyDown}
         />
 
         <button type="button" onClick={handleGenerateImage}>
@@ -58,7 +66,7 @@ const ImageGenerator = () => {
         </button>
         {imageURL && (
           <button type="button" onClick={handleDownloadImage}>
-            <AiOutlineDownload />
+            <AiOutlineDownload style={{ width: "30px", height: "30px" }} />
           </button>
         )}
       </form>
